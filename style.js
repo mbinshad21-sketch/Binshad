@@ -39,37 +39,5 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.5 });
 
-observer.observe(skillSection);
-(function(){
-  emailjs.init("YOUR_PUBLIC_KEY"); // replace
-})();
-
-document.getElementById("contact-form").addEventListener("submit", function(e) {
-  e.preventDefault();
-
-  emailjs.sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", this)
-    .then(function() {
-      alert("Message sent successfully!");
-    }, function(error) {
-      alert("Failed to send message");
-    });
-
-  this.reset();
-});
-
-  document.getElementById("contact-form").addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    emailjs.sendForm(
-      "service_lp4q50g",     // Service ID
-      "template_4hlg8ai",    // Template ID
-      this
-    )
-    .then(function() {
-      alert("Message sent successfully!");
-    }, function(error) {
-      alert("Failed to send message. Error: " + JSON.stringify(error));
-    });
-  });
 
 
