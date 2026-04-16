@@ -1,43 +1,24 @@
- function toggleMenu() {
-      document.getElementById("navLinks").classList.toggle("nav-active");
-    }
-    
-  window.addEventListener("scroll", () => {
-    document.querySelectorAll(".skill-bar span").forEach(bar => {
-      bar.style.width = bar.style.width;
-    });
+document.addEventListener("DOMContentLoaded", () => {
+  const skills = document.querySelectorAll(".skill");
+
+  skills.forEach((skill) => {
+    const bar = skill.querySelector(".skill-bar span");
+    const percentText = skill.querySelector(".percent");
+
+    const targetWidth = bar.getAttribute("data-width");
+
+    let current = 0;
+    const target = parseInt(targetWidth);
+
+    const interval = setInterval(() => {
+      if (current >= target) {
+        clearInterval(interval);
+      } else {
+        current++;
+        bar.style.width = current + "%";
+        percentText.textContent = current + "%";
+      }
+    }, 20);
   });
-  
-const skillSection = document.getElementById("skills");
-const bars = document.querySelectorAll(".skill-bar span");
-const percents = document.querySelectorAll(".percent");
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-
-      bars.forEach((bar, index) => {
-        const value = bar.getAttribute("data-width");
-        bar.style.width = value;
-
-        // Animate percentage number
-        let start = 0;
-        let end = parseInt(value);
-
-        let counter = setInterval(() => {
-          if (start >= end) {
-            clearInterval(counter);
-          } else {
-            start++;
-            percents[index].textContent = start + "%";
-          }
-        }, 15);
-      });
-
-      observer.unobserve(skillSection);
-    }
-  });
-}, { threshold: 0.5 });
-
-
+});
 
