@@ -57,3 +57,19 @@ document.getElementById("contact-form").addEventListener("submit", function(e) {
   this.reset();
 });
 
+  document.getElementById("contact-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    emailjs.sendForm(
+      "service_lp4q50g",     // Service ID
+      "template_4hlg8ai",    // Template ID
+      this
+    )
+    .then(function() {
+      alert("Message sent successfully!");
+    }, function(error) {
+      alert("Failed to send message. Error: " + JSON.stringify(error));
+    });
+  });
+
+
